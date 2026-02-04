@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws & Hearts | Animal Charity Organization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff7b54;
+            --secondary: #4a9bff;
+            --accent: #7ed957;
+            --light: #f9f7f3;
+            --dark: #2c3e50;
+            --text: #444;
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2 span {
+            color: var(--primary);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #ff6340;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 123, 84, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #6bc346;
+            box-shadow: 0 10px 20px rgba(126, 217, 87, 0.3);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled .navbar {
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .donate-now-btn {
+            background: var(--accent);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .donate-now-btn:hover {
+            background: #6bc346;
+            transform: translateY(-3px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            display: block;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Mission Section */
+        .mission {
+            background: white;
+        }
+
+        .mission-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .mission-text {
+            flex: 1;
+        }
+
+        .mission-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        .mission-text p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .mission-features {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .mission-features li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .mission-features i {
+            color: var(--accent);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .mission-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .mission-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Programs Section */
+        .programs {
+            background: #f0f7ff;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .program-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .program-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .program-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .program-card:hover .program-img img {
+            transform: scale(1.1);
+        }
+
+        .program-content {
+            padding: 30px;
+        }
+
+        .program-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 123, 84, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .program-icon i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .program-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .program-content p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .program-stats {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .program-stat {
+            text-align: center;
+        }
+
+        .program-stat .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .program-stat .label {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Animals Section */
+        .animals-slider {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-slide {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .animal-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animal-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .animal-image {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .animal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .animal-info {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .animal-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .animal-info .breed {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .animal-info p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .animal-status {
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .status-available {
+            background: rgba(126, 217, 87, 0.2);
+            color: #3a8c1e;
+        }
+
+        .status-adopted {
+            background: rgba(74, 155, 255, 0.2);
+            color: #1a56b4;
+        }
+
+        .status-rescued {
+            background: rgba(255, 123, 84, 0.2);
+            color: #cc4a2c;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background: var(--primary);
+        }
+
+        /* Donation Section */
+        .donation {
+            background: linear-gradient(rgba(255, 123, 84, 0.9), rgba(255, 123, 84, 0.9)), 
+                        url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .donation h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .donation p {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .donation-option {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .donation-option:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .donation-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .donation-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .donation-option h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .donation-option p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .amount-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .amount-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .amount-btn:hover, .amount-btn.selected {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        .custom-amount {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .custom-amount input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+        }
+
+        .custom-amount button {
+            padding: 15px 25px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .custom-amount button:hover {
+            background: #6bc346;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: white;
+            text-align: center;
+        }
+
+        .newsletter-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9f7f3;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .newsletter-box h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-box p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 25px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #ff6340;
+            transform: translateY(-5px);
+        }
+
+        /* Modal for Donation */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            position: relative;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .mission-content {
+                flex-direction: column;
+            }
+            
+            .mission-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .donation-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <i class="fas fa-paw"></i>
+                    Paws & <span>Hearts</span>
+                </a>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#animals">Animals</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-cta">
+                    <a href="#donate" class="donate-now-btn">Donate Now</a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#home">Home</a>
+            <a href="#mission">Mission</a>
+            <a href="#programs">Programs</a>
+            <a href="#animals">Animals</a>
+            <a href="#donate">Donate</a>
+            <a href="#contact">Contact</a>
+            <a href="#donate" class="btn">Donate Now</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Every Animal Deserves a Loving Home</h1>
+                <p>We rescue, rehabilitate, and rehome abused, abandoned, and neglected animals. Join us in making a difference, one paw at a time.</p>
+                
+                <div class="hero-btns">
+                    <a href="#donate" class="btn">Donate Now</a>
+                    <a href="#animals" class="btn btn-secondary">Meet Our Animals</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat1">0</span>
+                        <span class="stat-text">Animals Rescued</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat2">0</span>
+                        <span class="stat-text">Successful Adoptions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat3">0</span>
+                        <span class="stat-text">Volunteers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat4">0</span>
+                        <span class="stat-text">Years of Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span>Mission</span> & Vision</h2>
+                <p>We are committed to creating a world where every animal is treated with compassion and respect</p>
+            </div>
+            
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h2>Creating a Better World for Animals</h2>
+                    <p>Founded in 2010, Paws & Hearts Animal Charity has been at the forefront of animal rescue and rehabilitation. Our mission is to rescue animals from abuse, neglect, and homelessness, providing them with medical care, rehabilitation, and loving forever homes.</p>
+                    <p>We believe that every animal deserves a chance at a happy, healthy life, and we work tirelessly to make that a reality through our comprehensive programs and community outreach.</p>
+                    
+                    <ul class="mission-features">
+                        <li><i class="fas fa-check-circle"></i> Rescue animals from abusive situations</li>
+                        <li><i class="fas fa-check-circle"></i> Provide medical treatment and rehabilitation</li>
+                        <li><i class="fas fa-check-circle"></i> Find loving forever homes for our animals</li>
+                        <li><i class="fas fa-check-circle"></i> Educate the community about animal welfare</li>
+                        <li><i class="fas fa-check-circle"></i> Advocate for stronger animal protection laws</li>
+                    </ul>
+                    
+                    <a href="#programs" class="btn" style="margin-top: 30px;">Learn About Our Programs</a>
+                </div>
+                
+                <div class="mission-image">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Rescued Dog">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span>Programs</span></h2>
+                <p>Comprehensive initiatives designed to address the various needs of animals in our community</p>
+            </div>
+            
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Rescue Program">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <h3>Emergency Rescue</h3>
+                        <p>24/7 emergency response team that rescues animals from abusive situations, natural disasters, and life-threatening conditions.</p>
+                        
+                        <div class="program-stats">
+                            <div class="program-stat">
+                                <span class="number">1,250+</span>
+                                <span class="label">Rescues This Year</span>
+                            </div>
+                            <div class="program-stat">
+                                <span class="number">24/7</span>
+                                <span class="label">Emergency Line</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Medical Care">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h3>Medical Care</h3>
+                        <p>Full veterinary services including spay/neuter, vaccinations, emergency surgeries, and ongoing medical treatment for rescued animals.</p>
+                        
+                        <div class="program-stats">
+                            <div class="program-stat">
+                                <span class="number">5,000+</span>
+                                <span class="label">Animals Treated</span>
+                            </div>
+                            <div class="program-stat">
+                                <span class="number">100%</span>
+                                <span class="label">Vaccinated</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Adoption Program">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Adoption Services</h3>
+                        <p>Comprehensive adoption program that matches animals with loving families, including home visits and post-adoption support.</p>
+                        
+                        <div class="program-stats">
+                            <div class="program-stat">
+                                <span class="number">850+</span>
+                                <span class="label">Successful Adoptions</span>
+                            </div>
+                            <div class="program-stat">
+                                <span class="number">95%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animals Section -->
+    <section class="animals" id="animals">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our <span>Animals</span></h2>
+                <p>These beautiful souls are looking for their forever homes. Could you be their perfect match?</p>
+            </div>
+            
+            <div class="animals-slider">
+                <div class="animal-slide active">
+                    <div class="animal-card">
+                        <div class="animal-image">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Max">
+                        </div>
+                        <div class="animal-info">
+                            <h3>Max</h3>
+                            <span class="breed">Golden Retriever Mix • 3 Years</span>
+                            <p>Max is a gentle soul who loves long walks and cuddles. He was rescued from a neglectful situation but has blossomed into a confident, loving companion.</p>
+                            <span class="animal-status status-available">Available for Adoption</span>
+                            <a href="#" class="btn btn-secondary">Adopt Max</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animal-slide">
+                    <div class="animal-card">
+                        <div class="animal-image">
+                            <img src="luna.jpg" alt="Luna">
+                        </div>
+                        <div class="animal-info">
+                            <h3>Luna</h3>
+                            <span class="breed">Domestic Shorthair • 2 Years</span>
+                            <p>Luna is a playful and affectionate cat who enjoys sunny spots and feather toys. She's fully vaccinated and spayed, ready for her forever home.</p>
+                            <span class="animal-status status-available">Available for Adoption</span>
+                            <a href="#" class="btn btn-secondary">Adopt Luna</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animal-slide">
+                    <div class="animal-card">
+                        <div class="animal-image">
+                            <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Buddy">
+                        </div>
+                        <div class="animal-info">
+                            <h3>Buddy</h3>
+                            <span class="breed">German Shepherd • 5 Years</span>
+                            <p>Buddy is a loyal and intelligent companion who would thrive in an active home. He's great with older children and loves outdoor adventures.</p>
+                            <span class="animal-status status-adopted">Recently Adopted</span>
+                            <a href="#" class="btn btn-secondary" style="opacity: 0.7; cursor: default;">Adopted</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="slider-dots">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section class="donation" id="donate">
+        <div class="container">
+            <div class="section-title">
+                <h2>Make a <span>Difference</span></h2>
+                <p>Your donation helps us provide food, medical care, and shelter to animals in need</p>
+            </div>
+            
+            <div class="donation-options">
+                <div class="donation-option">
+                    <div class="donation-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>One-Time Gift</h3>
+                    <p>Make a single donation to support our ongoing rescue and care efforts</p>
+                    
+                    <div class="amount-options">
+                        <button class="amount-btn" data-amount="25">$25</button>
+                        <button class="amount-btn" data-amount="50">$50</button>
+                        <button class="amount-btn" data-amount="100">$100</button>
+                        <button class="amount-btn" data-amount="250">$250</button>
+                    </div>
+                    
+                    <div class="custom-amount">
+                        <input type="number" id="customAmount" placeholder="Other amount" min="1">
+                        <button id="customDonateBtn">Donate</button>
+                    </div>
+                </div>
+                
+                <div class="donation-option">
+                    <div class="donation-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Monthly Support</h3>
+                    <p>Become a monthly donor and provide consistent support for our animals</p>
+                    
+                    <div class="amount-options">
+                        <button class="amount-btn" data-amount="15">$15/month</button>
+                        <button class="amount-btn" data-amount="30">$30/month</button>
+                        <button class="amount-btn selected" data-amount="50">$50/month</button>
+                        <button class="amount-btn" data-amount="100">$100/month</button>
+                    </div>
+                    
+                    <a href="#" class="btn btn-accent" style="width: 100%;">Become a Monthly Donor</a>
+                </div>
+                
+                <div class="donation-option">
+                    <div class="donation-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Sponsor an Animal</h3>
+                    <p>Sponsor a specific animal's care, medical treatment, and rehabilitation</p>
+                    
+                    <div class="amount-options">
+                        <button class="amount-btn" data-amount="35">Sponsor a Cat</button>
+                        <button class="amount-btn" data-amount="50">Sponsor a Dog</button>
+                        <button class="amount-btn" data-amount="100">Sponsor Special Needs</button>
+                    </div>
+                    
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Choose an Animal to Sponsor</a>
+                </div>
+            </div>
+            
+            <p>All donations are tax-deductible. 92% of every dollar goes directly to animal care.</p>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter" id="contact">
+        <div class="container">
+            <div class="newsletter-box">
+                <h3>Stay Connected</h3>
+                <p>Subscribe to our newsletter for heartwarming success stories, upcoming events, and ways you can help animals in need.</p>
+                
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+                
+                <p style="font-size: 0.9rem; margin-top: 20px; color: #888;">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Paws & Hearts</h3>
+                    <p>Rescuing and rehabilitating animals since 2010. We're dedicated to creating a world where every animal is treated with compassion and respect.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#mission"><i class="fas fa-chevron-right"></i> Our Mission</a></li>
+                        <li><a href="#programs"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="#animals"><i class="fas fa-chevron-right"></i> Adoptable Animals</a></li>
+                        <li><a href="#donate"><i class="fas fa-chevron-right"></i> Ways to Donate</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Get Involved</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Foster an Animal</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Organize a Fundraiser</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Corporate Partnerships</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Legacy Giving</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Address</strong>
+                                <p>123 Animal Rescue Lane, Compassion City, CC 12345</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>(555) 123-PAWS (7297)</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>info@pawsandhearts.org</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Hours</strong>
+                                <p>Mon-Fri: 9AM-6PM<br>Sat-Sun: 10AM-4PM</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Paws & Hearts Animal Charity. All Rights Reserved. | EIN: 12-3456789 | <a href="#" style="color: var(--primary);">Privacy Policy</a></p>
+                <p style="margin-top: 10px;">Paws & Hearts is a 501(c)(3) nonprofit organization. Donations are tax-deductible to the extent allowed by law.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Donation Modal -->
+    <div class="modal" id="donationModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 20px;">Thank You for Your Generosity!</h2>
+            <p id="modalMessage">Your donation will help provide food, medical care, and shelter to animals in need.</p>
+            
+            <div style="margin-top: 30px;">
+                <h3>Complete Your Donation</h3>
+                <form id="donationForm" style="margin-top: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Name</label>
+                        <input type="text" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;" required>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email</label>
+                        <input type="email" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;" required>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Donation Amount</label>
+                        <input type="text" id="modalAmount" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-weight: 600; color: var(--primary);" readonly>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Complete Donation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const navCta = document.querySelector('.nav-cta');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navCta.style.display = navCta.style.display === 'flex' ? 'none' : 'flex';
+                
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '80px';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.background = 'white';
+                    navLinks.style.padding = '30px';
+                    navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                    
+                    navCta.style.flexDirection = 'column';
+                    navCta.style.position = 'absolute';
+                    navCta.style.top = '300px';
+                    navCta.style.left = '0';
+                    navCta.style.width = '100%';
+                    navCta.style.padding = '0 30px';
+                    
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                        navCta.style.display = 'none';
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Back to top button
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+            
+            // Animated statistics counter
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const heroSection = document.querySelector('.hero');
+            
+            function animateStats() {
+                let animated = false;
+                
+                return function() {
+                    const sectionPosition = heroSection.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (sectionPosition < screenPosition && !animated) {
+                        animated = true;
+                        
+                        statNumbers.forEach((stat, index) => {
+                            const target = index === 0 ? 5250 : 
+                                          index === 1 ? 3850 : 
+                                          index === 2 ? 250 : 14;
+                            let count = 0;
+                            const increment = target / 100;
+                            const timer = setInterval(() => {
+                                count += increment;
+                                if (count >= target) {
+                                    count = target;
+                                    clearInterval(timer);
+                                }
+                                stat.textContent = Math.floor(count) + (index === 3 ? '+' : '');
+                            }, 20);
+                        });
+                    }
+                };
+            }
+            
+            window.addEventListener('scroll', animateStats());
+            
+            // Trigger stats animation on page load if hero is visible
+            if (heroSection.getBoundingClientRect().top < window.innerHeight) {
+                animateStats()();
+            }
+            
+            // Animal Slider
+            const slides = document.querySelectorAll('.animal-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentSlide = 0;
+            
+            function showSlide(n) {
+                // Hide all slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Show selected slide
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            // Add click events to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+            
+            // Navigation buttons
+            prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+            nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+            
+            // Auto slide every 6 seconds
+            setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 6000);
+            
+            // Donation amount selection
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const customAmountInput = document.getElementById('customAmount');
+            const customDonateBtn = document.getElementById('customDonateBtn');
+            const donationModal = document.getElementById('donationModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalAmount = document.getElementById('modalAmount');
+            const donationForm = document.getElementById('donationForm');
+            
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove selected class from all buttons
+                    amountBtns.forEach(b => b.classList.remove('selected'));
+                    
+                    // Add selected class to clicked button
+                    this.classList.add('selected');
+                    
+                    // Get the amount
+                    const amount = this.getAttribute('data-amount');
+                    
+                    // Show donation modal
+                    openDonationModal(amount, this.closest('.donation-option').querySelector('h3').textContent);
+                });
+            });
+            
+            customDonateBtn.addEventListener('click', function() {
+                const amount = customAmountInput.value;
+                if (amount && amount > 0) {
+                    openDonationModal(amount, 'One-Time Gift');
+                } else {
+                    alert('Please enter a valid donation amount.');
+                }
+            });
+            
+            function openDonationModal(amount, donationType) {
+                modalMessage.textContent = `Your ${donationType.toLowerCase()} of $${amount} will help provide food, medical care, and shelter to animals in need.`;
+                modalAmount.value = `$${amount} ${donationType.includes('month') ? 'per month' : ''}`;
+                donationModal.classList.add('active');
+            }
+            
+            closeModal.addEventListener('click', () => {
+                donationModal.classList.remove('active');
+            });
+            
+            // Close modal when clicking outside
+            donationModal.addEventListener('click', (e) => {
+                if (e.target === donationModal) {
+                    donationModal.classList.remove('active');
+                }
+            });
+            
+            // Donation form submission
+            donationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your donation! In a real application, this would process the payment.');
+                donationModal.classList.remove('active');
+                
+                // Reset form
+                this.reset();
+                amountBtns.forEach(btn => btn.classList.remove('selected'));
+                customAmountInput.value = '';
+            });
+            
+            // Newsletter form submission
+            const newsletterForm = document.getElementById('newsletterForm');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter soon.`);
+                this.reset();
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Program cards hover effect
+            const programCards = document.querySelectorAll('.program-card');
+            programCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Adoption button simulation
+            document.querySelectorAll('a[href="#"]').forEach(link => {
+                if (link.textContent.includes('Adopt')) {
+                    link.addEventListener('click', function(e) {
+                        if (!this.style.opacity || this.style.opacity !== '0.7') {
+                            e.preventDefault();
+                            const animalName = this.closest('.animal-info').querySelector('h3').textContent;
+                            alert(`Thank you for your interest in adopting ${animalName}! Our adoption team will contact you shortly.`);
+                        }
+                    });
+                }
+            });
+            
+            // Set initial selected amount button for monthly donations
+            document.querySelectorAll('.donation-option')[1].querySelector('.amount-btn[data-amount="50"]').classList.add('selected');
+        });
+    </script>
+</body>
+</html>
